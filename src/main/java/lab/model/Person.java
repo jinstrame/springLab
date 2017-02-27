@@ -1,4 +1,4 @@
-package model;
+package lab.model;
 
 public interface Person {
     void setName(String name);

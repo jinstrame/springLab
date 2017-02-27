@@ -4,9 +4,9 @@ import org.junit.*;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import model.UsualPerson;
-import model.Person;
-import model.Country;
+import lab.model.UsualPerson;
+import lab.model.Person;
+import lab.model.Country;
 
 public class HelloWorldTest {
 
