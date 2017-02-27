@@ -1,12 +1,12 @@
-import static org.junit.Assert.* ;
-import org.junit.*;
-
+import org.junit.jupiter.api.*;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import lab.model.UsualPerson;
 import lab.model.Person;
 import lab.model.Country;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HelloWorldTest {
 
@@ -16,37 +16,28 @@ public class HelloWorldTest {
 
 	private AbstractApplicationContext context;
 
-	@Before
-	public void setUp() throws Exception {
-		context = new FileSystemXmlApplicationContext(
-				new String[] { APPLICATION_CONTEXT_XML_FILE_NAME });
+	@BeforeEach
+	void setUp() throws Exception {
+		context = new FileSystemXmlApplicationContext(APPLICATION_CONTEXT_XML_FILE_NAME);
 		expectedPerson = getExpectedPerson();
 	}
 
 	@Test
-	public void testInitPerson() {
-		UsualPerson person = (UsualPerson) context.getBean("person", Person.class);
+	void testInitPerson() {
+		Person person = context.getBean("person", Person.class);
 		assertEquals(expectedPerson, person);
 		System.out.println(person);
 	}
 
 	private UsualPerson getExpectedPerson() {
-		UsualPerson person = new UsualPerson();
-		person.setAge(35);
-		person.setName("John Smith");
-
-		Country country = new Country();
-		country.setId(1);
-		country.setName("Russia");
-		country.setCodeName("RU");
-
-		person.setCountry(country);
-
-		return person;
+		return new UsualPerson(
+				"John Smith",
+				new Country(1, "Russia", "RU"),
+				35);
 	}
-	
-	@After
-	public void tearDown() throws Exception{
+
+	@AfterEach
+	void tearDown() throws Exception {
 		if (context != null)
 			context.close();
 	}
