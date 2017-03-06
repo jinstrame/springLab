@@ -3,6 +3,7 @@ package lab.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import javax.annotation.Resource;
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
@@ -20,6 +21,8 @@ public class UsualPerson implements Person {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id")
+
+    @Resource
     private Country country;
 
     private int age;
