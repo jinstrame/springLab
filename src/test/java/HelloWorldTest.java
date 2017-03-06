@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.*;
 import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import lab.model.UsualPerson;
 import lab.model.Person;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HelloWorldTest {
 
-	protected static final String APPLICATION_CONTEXT_XML_FILE_NAME = "src/main/resources/application-context.xml";
+	private static final String APPLICATION_CONTEXT_CLASSPATH = "application-context.xml";
 
 	private UsualPerson expectedPerson;
 
@@ -18,7 +18,7 @@ public class HelloWorldTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		context = new FileSystemXmlApplicationContext(APPLICATION_CONTEXT_XML_FILE_NAME);
+		context = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_CLASSPATH);
 		expectedPerson = getExpectedPerson();
 	}
 
